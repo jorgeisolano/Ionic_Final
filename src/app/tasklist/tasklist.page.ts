@@ -23,8 +23,8 @@ export class TasklistPage implements OnInit {
 
   addItem() {
     let theNewTask: string|null = prompt("Tarea Nueva");
-
-    if (theNewTask !== '') {
+    
+    if (theNewTask !== ''  && theNewTask!==null) {
       this.taskService.addItem({ title: theNewTask, status: 'open' });
     }
   }
