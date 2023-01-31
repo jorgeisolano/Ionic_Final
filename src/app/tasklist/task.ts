@@ -6,4 +6,5 @@ export class Task {
         this.title = "";
         this.status = "";
     }
+
 }

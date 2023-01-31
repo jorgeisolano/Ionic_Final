@@ -1,3 +1,4 @@
+import { TaskServiceService } from './../Service/task-service.service';
 import { Component, OnInit } from '@angular/core';
 import { IonItemSliding } from '@ionic/angular';
 import { Task } from '../tasklist/task';
@@ -9,38 +10,30 @@ import { Task } from '../tasklist/task';
 })
 export class TasklistPage implements OnInit {
   tasks: Array<Task> = [];
-  constructor() {
-    this.tasks = [
-      {title: 'Leche', status: 'open'},
-      {title: 'Huevos', status: 'open'},
-      {title: 'Miel de Maple', status: 'open'},
-      {title: 'Mezcla para pancakes', status: 'open'}
-    ];
+
+  constructor(private taskService:TaskServiceService) {
   }
 
   ngOnInit() {
+
+      this.taskService.getTaskt().subscribe((data)=>  this.tasks=data)
+
+
   }
 
   addItem() {
-    let theNewTask: string|null = prompt("Tarea nueva");
-    console.log(theNewTask);
-    
-    if (theNewTask != "") {
-      this.tasks.push({ title: theNewTask, status: 'open' });
+    let theNewTask: string|null = prompt("Tarea Nueva");
+
+    if (theNewTask !== '') {
+      this.taskService.addItem({ title: theNewTask, status: 'open' });
     }
   }
 
   markAsDone(slidingItem: IonItemSliding, task: Task) {
-    task.status = "done";
-    setTimeout(() => { slidingItem.close(); }, 1);
+    this.taskService.markAsDone(task)
   }
 
   removeTask(slidingItem: IonItemSliding, task: Task) {
-    task.status = "removed";
-    let index = this.tasks.indexOf(task);
-    if (index > -1) {
-        //Removes the task from the array at a specific position
-        this.tasks.splice(index, 1);
-    }
+    this.taskService.removeTask(task)
   }
 }
