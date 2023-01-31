@@ -12,7 +12,6 @@ export class TasklistPage implements OnInit {
   tasks: Array<Task> = [];
 
   constructor(private taskService:TaskServiceService) {
-
   }
 
   ngOnInit() {
@@ -23,7 +22,7 @@ export class TasklistPage implements OnInit {
   }
 
   addItem() {
-    let theNewTask: string|null = prompt("New Task");
+    let theNewTask: string|null = prompt("Tarea Nueva");
 
     if (theNewTask !== '') {
       this.taskService.addItem({ title: theNewTask, status: 'open' });
