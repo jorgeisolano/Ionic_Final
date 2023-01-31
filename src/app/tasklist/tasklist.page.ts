@@ -9,13 +9,12 @@ import { Task } from '../tasklist/task';
 })
 export class TasklistPage implements OnInit {
   tasks: Array<Task> = [];
-
   constructor() {
     this.tasks = [
-      {title: 'Milk', status: 'open'},
-      {title: 'Eggs', status: 'open'},
-      {title: 'Syrup', status: 'open'},
-      {title: 'Pancake Mix', status: 'open'}
+      {title: 'Leche', status: 'open'},
+      {title: 'Huevos', status: 'open'},
+      {title: 'Miel de Maple', status: 'open'},
+      {title: 'Mezcla para pancakes', status: 'open'}
     ];
   }
 
@@ -23,9 +22,10 @@ export class TasklistPage implements OnInit {
   }
 
   addItem() {
-    let theNewTask: string|null = prompt("New Task");
-
-    if (theNewTask !== '') {
+    let theNewTask: string|null = prompt("Tarea nueva");
+    console.log(theNewTask);
+    
+    if (theNewTask != "") {
       this.tasks.push({ title: theNewTask, status: 'open' });
     }
   }
