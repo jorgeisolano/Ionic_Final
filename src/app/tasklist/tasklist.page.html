@@ -14,7 +14,7 @@
     <ion-item-sliding #slidingItem *ngFor="let task of tasks">
       <ion-item [ngClass]="{taskDone: task.status === 'done'}">
         <ion-avatar slot="start">
-          <img [src]="'https://cdn.icon-icons.com/icons2/3150/PNG/512/shopping_list_icon_192690.png'" alt="avatar" />
+          <img src="../../assets/icon/list_icon.png" alt="avatar" />
         </ion-avatar>
         {{task.title}}
       </ion-item>
