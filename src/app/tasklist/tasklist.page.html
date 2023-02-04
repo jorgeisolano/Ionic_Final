@@ -11,17 +11,15 @@
     </ion-fab-button>
   </ion-fab>
   <ion-list>
-    <ion-item-sliding #slidingItem *ngFor="let task of tasks">
+    <ion-item-sliding #slidingItem *ngFor="let task of tasks ; let i = index">
       <ion-item [ngClass]="{taskDone: task.status === 'done'}">
         <ion-avatar slot="start">
           <img src="../../assets/icon/list_icon.png" alt="avatar" />
         </ion-avatar>
-        {{task.title}}
+        <ion-checkbox slot="end" (ionChange)="checkboxClick($event,i)" [checked] = "task.status == 'done'"></ion-checkbox>
+        <ion-label>{{task.title}}</ion-label>
       </ion-item>
       <ion-item-options side="start" (ionSwipe)="removeTask(slidingItem, task)">
-          <button ion-button icon-only (click)="markAsDone(slidingItem, task)" color="secondary">
-            <ion-icon name="checkmark"></ion-icon>
-          </button>
           <button ion-button icon-only expandable (click)="removeTask(slidingItem, task)" color="danger">
             <ion-icon color="danger" name="trash"></ion-icon>
           </button>

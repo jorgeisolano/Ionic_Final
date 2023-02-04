@@ -18,7 +18,6 @@ export class TasklistPage implements OnInit {
 
       this.taskService.getTaskt().subscribe((data)=>  this.tasks=data)
 
-
   }
 
   addItem() {
@@ -27,13 +26,16 @@ export class TasklistPage implements OnInit {
     if (theNewTask !== ''  && theNewTask!==null) {
       this.taskService.addItem({ title: theNewTask, status: 'open' });
     }
+    console.log(this.tasks)
   }
 
-  markAsDone(slidingItem: IonItemSliding, task: Task) {
-    this.taskService.markAsDone(task)
+  checkboxClick(e:any, index : number){
+    this.taskService.handleCheckbox(index)
+    console.log(this.tasks)
   }
 
   removeTask(slidingItem: IonItemSliding, task: Task) {
     this.taskService.removeTask(task)
+    console.log(this.tasks)
   }
 }
