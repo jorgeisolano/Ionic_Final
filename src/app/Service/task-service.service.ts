@@ -45,16 +45,18 @@ export class TaskServiceService {
     set(ref(this.database, 'tasks/'), this.tasks);
     this.clientes$.next(this.tasks)
   }
-  markAsDone(task: Task) {
-    task.status = "done";
-    let index = this.tasks.indexOf(task);
-    if (index > -1) {
-        //Removes the task from the array at a specific position
-        this.tasks[index].status="done";
-        set(ref(this.database, 'tasks/'), this.tasks);
-        this.clientes$.next(this.tasks)
+
+  handleCheckbox(index : number) {
+    let task = this.tasks[index]
+    if(task.status == "done"){
+      this.tasks[index].status="open";
+    }else{
+      this.tasks[index].status="done";
     }
+    set(ref(this.database, 'tasks/'), this.tasks);
+    this.clientes$.next(this.tasks)
   }
+
 
   removeTask(task: Task) {
     task.status = "removed";
